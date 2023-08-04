@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://c3l4t251unp83"]
+[gd_scene load_steps=52 format=3 uid="uid://c3l4t251unp83"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_013yl"]
 [ext_resource type="Texture2D" uid="uid://dfan8isv55g3h" path="res://Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="2_vbuhp"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://ormmb2xa736" path="res://Legacy-Fantasy - High Forest 2.3/Character/Jumlp-All/Jump-All-Sheet.png" id="4_48jlf"]
 [ext_resource type="Texture2D" uid="uid://joyxvnx0xpkr" path="res://Legacy-Fantasy - High Forest 2.3/Character/Jump-Start/Jump-Start-Sheet.png" id="5_lteyb"]
 [ext_resource type="Texture2D" uid="uid://dapew3bsfypvv" path="res://Legacy-Fantasy - High Forest 2.3/Character/Run/Run-Sheet.png" id="6_hwdte"]
+[ext_resource type="Script" path="res://scripts/CharacterStateMachine.gd" id="7_76vkd"]
+[ext_resource type="Script" path="res://scripts/states/GroundState.gd" id="8_ijv1u"]
+[ext_resource type="Script" path="res://scripts/states/AirState.gd" id="9_nai83"]
+[ext_resource type="Script" path="res://scripts/states/LandingState.gd" id="10_njblx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_28upp"]
 atlas = ExtResource("2_vbuhp")
@@ -404,5 +408,20 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_l1rcc")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = -0.0015015
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "character")]
+script = ExtResource("7_76vkd")
+current_state = NodePath("Ground")
+character = NodePath("..")
+
+[node name="Ground" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("8_ijv1u")
+
+[node name="Air" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("9_nai83")
+
+[node name="Landing" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_njblx")
+can_move = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
