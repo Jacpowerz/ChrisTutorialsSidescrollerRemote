@@ -12,10 +12,12 @@ var has_double_jumped : bool = false
 func state_process(_delta):
 	if character.is_on_floor():
 		next_state = landing_state
+	
 		
 func state_input(event : InputEvent):
 	if event.is_action_pressed("jump") && not has_double_jumped:
 		double_jump()
+	
 		
 
 func on_exit():

@@ -510,6 +510,7 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mos1x"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mw4ob"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xu6ym"]
@@ -524,7 +525,7 @@ advance_mode = 2
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_st7va")
 states/Move/position = Vector2(349, 100)
 states/double_jump/node = SubResource("AnimationNodeAnimation_jky0j")
-states/double_jump/position = Vector2(543, -5)
+states/double_jump/position = Vector2(543, 2)
 states/jump_end/node = SubResource("AnimationNodeAnimation_64xdj")
 states/jump_end/position = Vector2(560, 94)
 states/jump_start/node = SubResource("AnimationNodeAnimation_ry4sx")
